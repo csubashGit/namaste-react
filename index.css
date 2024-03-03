@@ -1,3 +1,118 @@
-#heading{
-color:red;
+.header {
+display:flex;
+justify-content:space-between;
+border: 1px solid black;
 }
+
+.logo {
+    width:100px;
+}
+
+.nav-items {
+    padding: 0px 20px;
+}
+
+.nav-items > ul {
+    display: flex;
+    font-size: 20px;
+    list-style-type: none;
+}
+
+.nav-items > ul > li {
+    padding: 10px;
+    margin:10px;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+    width:auto;
+    justify-content: center;
+}
+
+.res-card {
+  width: 240px;
+  border-radius: 5px;
+  box-shadow: -1px 5px 10px 5px rgba(42, 42, 42, 0.2);
+  padding: 10px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.res-card:hover{
+    transform: scale(1.05);
+}
+
+.res-card > img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .res-card > h5 {
+    font-weight: lighter;
+  }
+  
+  .res-card > span {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    text-align: center;
+  }
+  
+  .res-card > span > h4 {
+    font-weight: bolder;
+    font-size: 12px;
+    padding: 0 2px 0;
+    margin-top: 10px;
+  }
+  
+  .res-card > span > h4:first-child {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-green);
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  .res-card > span > h4:first-child .fa-star {
+    font-size: 10px;
+    padding: 0 5px 3px 0;
+  }
+
+
+
+
+.search{
+    padding:10px;
+}
+
+.res-logo{
+    width:90%;
+    height:40%;
+}
+
+.filter-btn{
+    cursor: pointer;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimmer-card{
+    width:200px;
+    height:400px;
+    background-color: #f0f0f0;
+    margin: 20px;
+}
+
+.login{
+    width:50px;
+}
+
+.filter{
+    display:flex;
+}
+
