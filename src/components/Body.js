@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import RestaurantCard from "./RestaurantCard"
 import Shimmer from "./Shimmer";
 import { swiggy_api_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
 
@@ -50,16 +51,12 @@ const Body = () => {
         <div className="body">
             <div className="filter">
                 <div>
-                    <input type="text" className="serach-box" value={searchText} placeholder="Search Restauarants" onChange={(e) => {
+                    <input type="text" className="search-box" value={searchText} placeholder="Search Restauarants" onChange={(e) => {
                         setSearchText(e.target.value);
                         console.log(e.target.value);
                         e.target.value === "" ? setFilteredRestaurant(listOfRestaurants) : 
                         setFilteredRestaurant(listOfRestaurants.filter((res) => res?.info?.name?.includes(searchText)))
                     }} />
-                    {/* <button onClick={ () => {
-                        const filteredRestaurant = listOfRestaurants.filter((res) => res?.info?.name?.includes(searchText))
-                        setFilteredRestaurant(filteredRestaurant);
-                    }}>search</button> */}
                 </div>
                 <button className="filter-btn" onClick={()=>{
                     const filteredList = listOfRestaurants.filter(
@@ -71,7 +68,7 @@ const Body = () => {
             </div>
             <div className="res-container">
                 {filteredRestaurant.map((restaurant) => (
-                    <RestaurantCard key={restaurant?.info?.id} {...restaurant?.info} />
+                   <Link key={restaurant?.info?.id} to={"restaurants/" + restaurant?.info?.id}><RestaurantCard  {...restaurant?.info} /></Link>
                 ))}
             </div>
         </div>
