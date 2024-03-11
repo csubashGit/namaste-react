@@ -12,10 +12,19 @@ const RestaurantMenu = () => {
     const [menuInfo,setMenuInfo] = useState([]);
     const [isVeg,setIsVeg] = useState(false);
     const fetchMenu  = async () => {
-        const response = await fetch(
-            swiggy_menu_api_URL + resId
-        );
-        const json  = await response.json();
+        // const response = await fetch(
+        //     swiggy_menu_api_URL + resId
+        // );
+        //const json  = await response.json();
+
+        let jsonResponse = await
+        fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(swiggy_menu_api_URL+resId)}`)
+        .then(response => {
+          if (response.ok) return response.json()
+          throw new Error('Network response was not ok.')
+        })
+        const json  = JSON.parse(jsonResponse?.contents)
+
         console.log(json);
         //set Restaurant data from API
         const restaurantData = json?.data.cards?.map(x=>x.card)?.find(x=>x && x.card['@type'] === RESTAURANT_TYPE_KEY)?.card?.info || null;
