@@ -10,7 +10,7 @@ const RestaurantMenu = () => {
     const [resInfo,setResInfo] = useState(null);
     const {resId} = useParams();
     const [menuInfo,setMenuInfo] = useState([]);
-    const [isVeg,setIsVeg] = useState(false);
+    const [filteredVegMenu,setFilteredVegMenu] = useState([]);
     const fetchMenu  = async () => {
         // const response = await fetch(
         //     swiggy_menu_api_URL + resId
@@ -24,8 +24,6 @@ const RestaurantMenu = () => {
           throw new Error('Network response was not ok.')
         })
         const json  = JSON.parse(jsonResponse?.contents)
-
-        console.log(json);
         //set Restaurant data from API
         const restaurantData = json?.data.cards?.map(x=>x.card)?.find(x=>x && x.card['@type'] === RESTAURANT_TYPE_KEY)?.card?.info || null;
         setResInfo(restaurantData);
@@ -34,6 +32,7 @@ const RestaurantMenu = () => {
                         filter( x=> x['@type']=== MENU_ITEM_TYPE_KEY)?.
                         map(x=>x.itemCards).flat().map(x=>x.card?.info) || [];
         setMenuInfo(menuData);
+        setFilteredVegMenu(menuData);
         console.log(menuData);
     }
     return resInfo === null ? (<Shimmer />) : (
@@ -45,7 +44,8 @@ const RestaurantMenu = () => {
                 alt={resInfo?.name}
                 />
                 <div className="restaurant-summary-details">
-                    <h2 className="restaurant-title">{resInfo?.name}</h2>
+                    <p className="restaurant-title">{resInfo?.name}</p>
+                    <p> {resInfo.areaName},{resInfo?.city}</p>
                     <p className="restaurant-tags">{resInfo?.cuisines?.join(", ")}</p>
                     <div className="restaurant-details">
                         <div className="restaurant-rating" style={
@@ -74,8 +74,9 @@ const RestaurantMenu = () => {
             name="isVeg"
             value="isVeg" 
             onClick={() => {
-                const vegFood = menuInfo.filter(x => x.isVeg && x.isVeg === 1)
-                setMenuInfo(vegFood);
+                var checkBoxElement = document.getElementById("checkBoxForVeg");
+                var vegFood = checkBoxElement.checked == false ? menuInfo : menuInfo.filter(x => x.isVeg && x.isVeg === 1);
+                setFilteredVegMenu(vegFood);
             }}/>
             <h4>If you prefer Vegetarian food click on checkbox</h4>
         </div> 
@@ -85,12 +86,12 @@ const RestaurantMenu = () => {
                 <div className="menu-title-wrap">
                     <h3 className="menu-title">Recommended</h3>
                     <p className="menu-count">
-                    {menuInfo.length} ITEMS
+                    {filteredVegMenu.length} ITEMS
                     </p>
                 </div>
                 <div className="menu-items-list">
-                    {menuInfo.map((item) => (
-                    <div className="menu-item" key={item?.id}>
+                    {filteredVegMenu.map((item) => (
+                    <div className="menu-item" key={item?.id + item?.category}>
                         <div className="menu-item-details">
                         <h3 className="item-title">{item?.name}</h3>
                         <p className="item-cost">

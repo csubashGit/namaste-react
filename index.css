@@ -43,6 +43,10 @@ margin-bottom: 5px;
   background-color: #04AA6D;
 }
 
+.res-card-show{
+  text-decoration: auto;
+}
+
 .res-container{
     display: flex;
     flex-wrap: wrap;
@@ -68,15 +72,16 @@ margin-bottom: 5px;
     border-radius: 10px;
   }
   
-  .res-card > h5 {
-    font-weight: lighter;
+  .res-card > h3 {
+    margin:1px 0px;
   }
   
   .res-card > span {
     display: flex;
     justify-content: space-between;
     margin-top: 8px;
-    text-align: center;
+    text-align: left;
+    color:black;
   }
   
   .res-card > span > h4 {
@@ -135,6 +140,7 @@ margin-bottom: 5px;
     background-color: rgb(235, 207, 154);
     border:none;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .filter{
@@ -172,6 +178,7 @@ margin-bottom: 5px;
   font-size: 40px;
   max-width: 540px;
   font-weight: 300;
+  margin:10px 0px;
 }
 .restaurant-tags {
   white-space: nowrap;
@@ -182,7 +189,6 @@ margin-bottom: 5px;
 }
 .restaurant-details {
   display: flex;
-  margin-top: 18px;
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
@@ -292,5 +298,10 @@ margin-bottom: 5px;
 }
 
 /* Restaurant Menu End Start */
+
+
+.user-card {
+  padding:2px;
+}
 
 

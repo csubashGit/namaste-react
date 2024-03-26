@@ -13,8 +13,8 @@ const RestaurantCard = ({
       <div className="res-card">
         <img src={IMG_CDN_URL + cloudinaryImageId} />
         <h3>{name}</h3>
-        <h5>{cuisines.join(", ")}</h5>
-        <h5>{areaName}</h5>
+        <span>{cuisines.join(", ")}</span>
+        <span>{areaName}</span>
         <span>
         <h4
           style={
