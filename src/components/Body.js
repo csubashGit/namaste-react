@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard"
 import Shimmer from "./Shimmer";
 import { swiggy_api_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
 
@@ -52,7 +53,12 @@ const Body = () => {
         } catch (error) {
           console.log(error);
         }
-      }
+      };
+
+    const onlineStatus = useOnlineStatus();
+    if(!onlineStatus){
+      return <h2>Looks like you are offline. Please check your internet connection</h2>
+    }
 
     return  listOfRestaurants?.length === 0 ? (
         <Shimmer/>
