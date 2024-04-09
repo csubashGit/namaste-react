@@ -50,6 +50,7 @@ const Body = () => {
           // update the state variable restaurants with Swiggy API data
           setListOfRestaurants(resData);
           setFilteredRestaurant(resData);
+          console.log(resData);
         } catch (error) {
           console.log(error);
         }
@@ -64,16 +65,15 @@ const Body = () => {
         <Shimmer/>
     ):(
         <div className="body">
-            <div className="filter">
+            <div className="flex m-2">
                 <div>
-                    <input type="text" className="search-box" value={searchText} placeholder="Search Restauarants" onChange={(e) => {
+                    <input type="text" className="border border-solid border-black rounded-sm p-2" value={searchText} placeholder="Search Restauarants" onChange={(e) => {
                         setSearchText(e.target.value);
-                        console.log(e.target.value);
                         e.target.value === "" ? setFilteredRestaurant(listOfRestaurants) : 
                         setFilteredRestaurant(listOfRestaurants.filter((res) => res?.info?.name?.includes(searchText)))
                     }} />
                 </div>
-                <button className="filter-btn" onClick={()=>{
+                <button className="cursor-pointer rounded-lg bg-blue-400" onClick={()=>{
                     const filteredList = listOfRestaurants.filter(
                         (res) => res.info.avgRating > 4.4
                     );
@@ -81,9 +81,9 @@ const Body = () => {
                 }
                     }>Top Rated Restaurants</button>
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap gap-1">
                 {filteredRestaurant.map((restaurant) => (
-                   <Link key={restaurant?.info?.id} className="res-card-show" to={"restaurants/" + restaurant?.info?.id}><RestaurantCard  {...restaurant?.info} /></Link>
+                   <Link key={restaurant?.info?.id} className="no-underline decoration-black" style={{color:"black"}} to={"restaurants/" + restaurant?.info?.id}><RestaurantCard  {...restaurant?.info} /></Link>
                 ))}
             </div>
         </div>

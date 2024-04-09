@@ -10,13 +10,13 @@ const RestaurantCard = ({
     avgRatingString,
   }) => {
     return (
-      <div className="res-card">
-        <img src={IMG_CDN_URL + cloudinaryImageId} />
-        <h3>{name}</h3>
-        <span>{cuisines.join(", ")}</span>
-        <span>{areaName}</span>
-        <span>
-        <h4
+      <div className="m-2 p-2 w-[240px] bg-gray-100 rounded-sm hover:bg-gray-300  ease-in-out duration-150">
+        <img className="h-[150px] w-[100%] rounded-md" src={IMG_CDN_URL + cloudinaryImageId} />
+        <div className="font-bold overflow-hidden whitespace-nowrap text-ellipsis">{name}</div>
+        <div className="overflow-hidden whitespace-nowrap text-ellipsis">{cuisines.join(", ")}</div>
+        <div>{areaName}</div>
+        <span className="flex space-x-2">
+        <h4 className="flex"
           style={
             avgRatingString < 4
               ? { backgroundColor: "var(--light-red)" }

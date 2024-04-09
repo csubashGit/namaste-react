@@ -1,3 +1,12 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+/* 
 .header {
 display:flex;
 justify-content:space-between;
@@ -150,6 +159,7 @@ margin-bottom: 5px;
 }
 
 /* Restaurant Menu CSS Start */
+/*
 .restaurant-menu {
   margin-top: 80px;
   min-height: 80vh;
@@ -298,10 +308,10 @@ margin-bottom: 5px;
 }
 
 /* Restaurant Menu End Start */
-
+/*
 
 .user-card {
   padding:2px;
-}
+} */
 
 

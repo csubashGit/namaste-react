@@ -1,10 +1,10 @@
 export const Logo_URL = "https://cdn6.f-cdn.com/contestentries/1015573/19553545/590ab9add2f8f_thumb900.jpg";
 // Image CDN URL for Restaurant Menu
 export const ITEM_IMG_CDN_URL =
-  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
 // Image CDN URL for Restaurant card
 export const IMG_CDN_URL =
-  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
 // Swiggy API to get Restaurant data with foodfire erver
 export const swiggy_api_URL =

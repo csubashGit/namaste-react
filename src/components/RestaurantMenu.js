@@ -36,19 +36,19 @@ const RestaurantMenu = () => {
         console.log(menuData);
     }
     return resInfo === null ? (<Shimmer />) : (
-        <div className="restaurant-menu">
-            <div className="restaurant-summary">
+        <div className="max-w-[800px] min-h-[800px]" style={{margin:"20px auto 0"}}>
+            <div className="flex h-[200px] bg-blck-100">
                 <img
-                className="restaurant-img"
+                className="w-[250px] h-[170px]"
                 src={IMG_CDN_URL + resInfo?.cloudinaryImageId}
                 alt={resInfo?.name}
                 />
-                <div className="restaurant-summary-details">
-                    <p className="restaurant-title">{resInfo?.name}</p>
-                    <p> {resInfo.areaName},{resInfo?.city}</p>
-                    <p className="restaurant-tags">{resInfo?.cuisines?.join(", ")}</p>
-                    <div className="restaurant-details">
-                        <div className="restaurant-rating" style={
+                <div className="flex flex-col basis-[520px] mx-5">
+                    <div className="text-4xl font-light">{resInfo?.name}</div>
+                    <div className="text-2xl"> {resInfo.areaName},{resInfo?.city}</div>
+                    <div className="whitespace-nowrap text-xl"> Cuisine: {resInfo?.cuisines?.join(", ")}</div>
+                    <div className="flex text-xl gap-1">
+                        <div className="gap-[5px]" style={
                         (resInfo?.avgRating) < 4
                         ? { backgroundColor: "var(--light-red)" }
                         : (resInfo?.avgRating) === "--"
@@ -67,7 +67,7 @@ const RestaurantMenu = () => {
             </div>
                 
         </div>
-        <div className="isVegDiv">
+        <div className="flex justify-center">
         <input 
             type="checkbox"
             id="checkBoxForVeg"
@@ -78,23 +78,23 @@ const RestaurantMenu = () => {
                 var vegFood = checkBoxElement.checked == false ? menuInfo : menuInfo.filter(x => x.isVeg && x.isVeg === 1);
                 setFilteredVegMenu(vegFood);
             }}/>
-            <h4>If you prefer Vegetarian food click on checkbox</h4>
+            <div>If you prefer Vegetarian food click on checkbox</div>
         </div> 
         <div className="restautant-menu-items">
-            <div className="restaurant-menu-content">
-                <div className="menu-items-container">
+            <div className="flex justify-center">
+                <div >
                 <div className="menu-title-wrap">
                     <h3 className="menu-title">Recommended</h3>
                     <p className="menu-count">
                     {filteredVegMenu.length} ITEMS
                     </p>
                 </div>
-                <div className="menu-items-list">
+                <div className="flex justify-center flex-col">
                     {filteredVegMenu.map((item) => (
-                    <div className="menu-item" key={item?.id + item?.category}>
-                        <div className="menu-item-details">
-                        <h3 className="item-title">{item?.name}</h3>
-                        <p className="item-cost">
+                    <div className="flex self-start" key={item?.id + item?.category}>
+                        <div className="flex flex-col w-[500px]">
+                        <h3 className="w-[60%]">{item?.name}</h3>
+                        <p className="mt-1 text-lg font-normal w-[40%]">
                             {item?.price > 0
                             ? new Intl.NumberFormat("en-IN", {
                                 style: "currency",
@@ -104,15 +104,15 @@ const RestaurantMenu = () => {
                         </p>
                         <p className="item-desc">{item?.description}</p>
                         </div>
-                        <div className="menu-img-wrapper">
+                        <div className="flex flex-col justify-center items-end w-[200px]">
                         {item?.imageId && (
                             <img
-                            className="menu-item-img"
+                            className="h-[100px] w-[100px] rounded"
                             src={ITEM_IMG_CDN_URL + item?.imageId}
                             alt={item?.name}
                             />
                         )}
-                        <button className="add-btn">ADD +</button>
+                        <button className="bg-orange-100 px-6 py-2">ADD +</button>
                         </div>
                     </div>
                     ))}
