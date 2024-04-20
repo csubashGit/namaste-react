@@ -3,6 +3,7 @@ import { MENU_ITEM_TYPE_KEY, RESTAURANT_TYPE_KEY, swiggy_menu_api_URL } from "..
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL,ITEM_IMG_CDN_URL } from "../utils/constants";
+import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
     useEffect(() => {
         fetchMenu();
@@ -11,6 +12,7 @@ const RestaurantMenu = () => {
     const {resId} = useParams();
     const [menuInfo,setMenuInfo] = useState([]);
     const [filteredVegMenu,setFilteredVegMenu] = useState([]);
+    const [categories,setCategories] = useState([]);
     const fetchMenu  = async () => {
         // const response = await fetch(
         //     swiggy_menu_api_URL + resId
@@ -34,6 +36,12 @@ const RestaurantMenu = () => {
         setMenuInfo(menuData);
         setFilteredVegMenu(menuData);
         console.log(menuData);
+
+        const categoriesData = json?.data.cards?.find(x=>x.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+            (c) => c.card?.card?.['@type'] === MENU_ITEM_TYPE_KEY
+        );
+        setCategories(categoriesData)
+        console.log(categoriesData);
     }
     return resInfo === null ? (<Shimmer />) : (
         <div className="max-w-[800px] min-h-[800px]" style={{margin:"20px auto 0"}}>
@@ -120,6 +128,7 @@ const RestaurantMenu = () => {
             </div>
         </div>
     </div>
+        <div>{categories.map((category) => <RestaurantCategory  key={category.card.card.title} data={category.card.card}/>)}</div>
     </div>
     )
 }

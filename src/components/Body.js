@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import RestaurantCard from "./RestaurantCard"
+import RestaurantCard,{withPromotedLabel} from "./RestaurantCard"
 import Shimmer from "./Shimmer";
 import { swiggy_api_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ const Body = () => {
     const [searchText, setSearchText] = useState("");
     const [filteredRestaurant,setFilteredRestaurant] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
     useEffect(()=>{
         getRestaurants();
     },[])
@@ -83,7 +84,11 @@ const Body = () => {
             </div>
             <div className="flex flex-wrap gap-1">
                 {filteredRestaurant.map((restaurant) => (
-                   <Link key={restaurant?.info?.id} className="no-underline decoration-black" style={{color:"black"}} to={"restaurants/" + restaurant?.info?.id}><RestaurantCard  {...restaurant?.info} /></Link>
+                   <Link key={restaurant?.info?.id} className="no-underline decoration-black" style={{color:"black"}} to={"restaurants/" + restaurant?.info?.id}
+                   >
+                    {restaurant.info.promoted ? <RestaurantCardPromoted {...restaurant?.info} /> : <RestaurantCard  {...restaurant?.info} />
+                    }
+                    </Link>
                 ))}
             </div>
         </div>
