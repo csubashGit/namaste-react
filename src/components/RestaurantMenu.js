@@ -14,6 +14,15 @@ const RestaurantMenu = () => {
     const [filteredVegMenu,setFilteredVegMenu] = useState([]);
     const [categories,setCategories] = useState([]);
     const [showIndex,setShowIndex] = useState(0);
+    function updateActiveIndex (newIndex){
+        if(showIndex == newIndex){
+            setShowIndex(null);
+        }
+        else{
+            setShowIndex(newIndex);
+        }
+
+    }
     const fetchMenu  = async () => {
         // const response = await fetch(
         //     swiggy_menu_api_URL + resId
@@ -133,7 +142,7 @@ const RestaurantMenu = () => {
         key={category.card.card.title} 
         data={category.card.card} 
         showItems ={index === showIndex ? true:false}
-        setShowIndex = {() => setShowIndex(index)}
+        updateIndex = {() => updateActiveIndex(index)}
         />)}</div>
     </div>
     )
