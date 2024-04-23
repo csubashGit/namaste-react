@@ -1,20 +1,21 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = (data) => {
-    const [showItems,setShowItems] = useState(false);
-    console.log(data);
+const RestaurantCategory = ({data,showItems,setShowIndex}) => {
+    //const [showItems,setShowItems] = useState(false);
+    console.log(showItems);
     const HandleClick = () =>{
-        setShowItems(!showItems);
+        //setShowItems(!showItems);
+        setShowIndex();
     }
     return(
         <div>
-            <div className="my-3 bg-gray-50 shadow-lg p-4">
+            <div className="my-3 bg-gray-50 shadow-lg p-4" onClick={HandleClick}>
                 <div className="flex justify-between ">
-                <span className="font-bold text-lg" onClick={HandleClick}>{data.data.title}({data.data.itemCards.length})</span>
+                <span className="font-bold text-lg">{data.title}({data.itemCards.length})</span>
                 <span>↓</span>
                 </div>
-                {showItems && <ItemList items={data.data.itemCards}/>}
+                {showItems && <ItemList items={data.itemCards}/>}
             </div>
         </div>
     )
