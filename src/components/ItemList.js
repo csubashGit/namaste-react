@@ -1,7 +1,13 @@
+import { useDispatch } from "react-redux";
 import { ITEM_IMG_CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList  = ({items}) => {
-    console.log(items);
+    const dispatch = useDispatch();
+    const handleAddItem = () => {
+        dispatch(addItem("Pizza"));
+    };
+
 return (
     <div>
         {
@@ -32,7 +38,11 @@ return (
                 alt={item?.card.info?.name}
                 />
             )}
-            <button className="bg-orange-100 px-6 py-2">ADD +</button>
+            <button className="bg-orange-100 px-6 py-2"
+            onClick={() => {
+                dispatch(addItem(item));
+                console.log("Subash")
+            }}>ADD +</button>
             </div>
         </div>
         ))}
