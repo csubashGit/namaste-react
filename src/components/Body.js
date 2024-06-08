@@ -68,7 +68,9 @@ const Body = () => {
         <div className="body">
             <div className="flex m-2">
                 <div>
-                    <input type="text" className="border border-solid border-black rounded-sm p-2" value={searchText} placeholder="Search Restauarants" onChange={(e) => {
+                    <input type="text" 
+                    data-testid="searchInput"
+                    className="border border-solid border-black rounded-sm p-2" value={searchText} placeholder="Search Restauarants" onChange={(e) => {
                         setSearchText(e.target.value);
                         e.target.value === "" ? setFilteredRestaurant(listOfRestaurants) : 
                         setFilteredRestaurant(listOfRestaurants.filter((res) => res?.info?.name?.includes(searchText)))
@@ -86,7 +88,7 @@ const Body = () => {
                 {filteredRestaurant.map((restaurant) => (
                    <Link key={restaurant?.info?.id} className="no-underline decoration-black" style={{color:"black"}} to={"restaurants/" + restaurant?.info?.id}
                    >
-                    {restaurant.info.promoted ? <RestaurantCardPromoted {...restaurant?.info} /> : <RestaurantCard  {...restaurant?.info} />
+                    {restaurant.info.promoted ? <RestaurantCardPromoted resData = {restaurant?.info} /> : <RestaurantCard resData = {restaurant?.info} />
                     }
                     </Link>
                 ))}

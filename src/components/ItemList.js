@@ -12,7 +12,7 @@ return (
     <div>
         {
         items.map((item) => (
-            <div className="my-2 flex self-start" key={item?.card.info?.id + item?.card.info?.category}>
+            <div data-testid="fooditems" className="my-2 flex self-start" key={item?.card.info?.id + item?.card.info?.category}>
             <div className="flex flex-col w-[500px]">
             <p className="my-1  font-bold w-[60%]">{item?.card.info?.name}</p>
             <p className="my-1 text-lg font-normal w-[40%]">

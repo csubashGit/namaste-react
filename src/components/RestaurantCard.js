@@ -1,14 +1,18 @@
 import { IMG_CDN_URL } from "../utils/constants";
 // Restaurant card component: Image, name, cuisine
-const RestaurantCard = ({
-    cloudinaryImageId,
+const RestaurantCard = (props) => {
+  const {resData} = props;
+console.log(resData);
+const {
+  cloudinaryImageId,
     name,
     cuisines,
     areaName,
     sla,
     costForTwo,
-    avgRatingString,
-  }) => {
+    avgRatingString
+} = resData;
+
     return (
       <div className="m-2 p-2 w-[240px] bg-gray-100 rounded-sm hover:bg-gray-300  ease-in-out duration-150">
         <img className="h-[150px] w-[100%] rounded-md" src={IMG_CDN_URL + cloudinaryImageId} />

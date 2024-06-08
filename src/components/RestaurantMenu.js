@@ -85,7 +85,7 @@ const RestaurantMenu = () => {
             </div>
                 
         </div>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
         <input 
             type="checkbox"
             id="checkBoxForVeg"
@@ -97,8 +97,8 @@ const RestaurantMenu = () => {
                 setFilteredVegMenu(vegFood);
             }}/>
             <div>If you prefer Vegetarian food click on checkbox</div>
-        </div> 
-        <div className="restautant-menu-items">
+        </div>  */}
+        {/* <div className="restautant-menu-items">
             <div className="flex justify-center">
                 <div >
                 <div className="menu-title-wrap">
@@ -137,7 +137,7 @@ const RestaurantMenu = () => {
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
         <div>{categories.map((category,index) => <RestaurantCategory  
         key={category.card.card.title} 
         data={category.card.card} 
